@@ -23,6 +23,6 @@ export interface Source {
 export interface ArticlesByCategoryAndPage {
     [key: string] : {
         page: number;
-        articles: string[];
+        articles: Article[];
     }
 }
