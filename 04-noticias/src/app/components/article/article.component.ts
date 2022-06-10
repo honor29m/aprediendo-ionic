@@ -3,6 +3,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { Article } from 'src/app/interfaces';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-article',
@@ -19,6 +20,7 @@ export class ArticleComponent implements OnInit {
     private platform: Platform,
     private actionSheetCtrl: ActionSheetController,
     private socialSharing: SocialSharing,
+    private storage: StorageService,
   ) { }
 
   ngOnInit() {}
@@ -36,10 +38,12 @@ export class ArticleComponent implements OnInit {
 
   async onOpenMenu() {
 
+    const articleInFav = this.storage.articleInFavorites(this.article);
+
     const normalBts = [
       {
-        text: 'Favorito',
-        icon: 'heart-outline',
+        text: articleInFav ? 'Remover favorito' : 'Favorito',
+        icon: articleInFav ? 'heart' : 'heart-outline',
         handler: () => this.onToggleFavorite()
       },
       {
@@ -80,7 +84,7 @@ export class ArticleComponent implements OnInit {
 
   onToggleFavorite() {
     console.log('favorite');
-    
+    this.storage.saveRemoveArticle(this.article);
   }
 
 }
