@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Article, ArticlesByCategoryAndPage, NewsResponse } from '../interfaces';
 import { map } from 'rxjs/operators'
 
+import { storedArticlesByCategory } from '../data/mock-news';
+
 const apiKey = environment.apiKey;
 
 @Injectable({
@@ -12,7 +14,7 @@ const apiKey = environment.apiKey;
 })
 export class NewsService {
 
-  private articlesByCategoryAndPage: ArticlesByCategoryAndPage = {}
+  private articlesByCategoryAndPage: ArticlesByCategoryAndPage = storedArticlesByCategory;
   apiURL = environment.apiUrl;
 
   constructor(
@@ -39,6 +41,9 @@ export class NewsService {
 
   getTopHeadlinesByCategory(category:string, loadMore:boolean = false):Observable<Article[]> {
     
+    return of(this.articlesByCategoryAndPage[category].articles);
+
+
     if ( loadMore ) {
       return this.getArticlesByCategory( category ); 
     }
