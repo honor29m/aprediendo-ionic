@@ -1,12 +1,21 @@
 <ion-content [fullscreen]="true">
 
-  <ion-slides [options]="slideOpts">
-    <ion-slide *ngFor="let pelicula of pelisRecientes">
-      <!-- <h1>{{ pelicula.title }}</h1> -->
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Películas Nuevas</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-      <ion-card>
-        <img [src]="pelicula.backdrop_path | imagen">
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
+  <app-slideshow-backdrop [peliculas]="pelisRecientes"></app-slideshow-backdrop>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Cartelera</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-poster [peliculas]="pelisRecientes"></app-slideshow-poster>
 </ion-content>
