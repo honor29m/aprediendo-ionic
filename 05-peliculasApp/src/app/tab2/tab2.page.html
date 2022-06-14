@@ -13,7 +13,7 @@
 
 <ion-content >
 
-  <ion-grid fixed>
+  <ion-grid fixed *ngIf="activarSpinner">
     <ion-row>
       <ion-col size="12">
         <ion-spinner name="crescent"></ion-spinner>
@@ -21,7 +21,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list>
+  <ion-list *ngIf="peliculas.length == 0">
     <ion-list-header>
       <ion-label>Ideas</ion-label>
      
@@ -31,4 +31,20 @@
     </ion-item>
    
   </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let pelicula of peliculas">
+        <ion-card (click)="verDetalle( pelicula.id )">
+          <img [src]="pelicula.poster_path | imagen">
+          <ion-card-header>
+            <ion-card-subtitle> {{ pelicula.release_date }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h2> {{ pelicula.title }}</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
