@@ -11,8 +11,6 @@ export class ImagenPipe implements PipeTransform {
   transform(img: string): string {
 
     if ( !img ) {
-      console.log('entre en el if');
-      
       return './assets/no-image-banner.jpg';
     }
 
