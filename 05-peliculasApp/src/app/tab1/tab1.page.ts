@@ -26,10 +26,19 @@ export class Tab1Page implements OnInit {
       }   
     );
 
+    this.getPopulares();
+  }
+
+  cargarMas(){
+    this.getPopulares();
+  }
+
+  getPopulares() {
     this.moviesService.getPopulares().subscribe(
       (respuesta => {
-        console.log('Populares', respuesta);
-        this.populares = respuesta.results;
+        // console.log('Populares', respuesta);
+        const arrTemp = [ ...this.populares, ...respuesta.results ]
+        this.populares = arrTemp;
       })
     )
   }
