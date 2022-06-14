@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Pelicula } from 'src/app/interfaces/interfaces';
+import { DetalleComponent } from '../detalle/detalle.component';
 
 
 @Component({
@@ -18,13 +20,25 @@ export class SlideshowParesComponent implements OnInit {
     spaceBetween: -10
   };
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController,
+  ) { }
 
   ngOnInit() {}
 
   onClick() {
     console.log('Cargar mas');
     this.cargarMas.emit();
-    
+  }
+
+  async verDetalle( id: any ) {
+    const modal = await this.modalCtrl.create({
+      component: DetalleComponent,
+      componentProps: {
+        id
+      }
+    });
+
+    modal.present();
   }
 }
