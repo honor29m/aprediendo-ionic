@@ -35,7 +35,6 @@ export class Tab2Page {
 
     this.movieService.getBuscarPelicula( valor ).subscribe(
       (respuesta) => {
-        console.log(respuesta);
         this.peliculas = respuesta['results'];
         this.activarSpinner = false;
       }

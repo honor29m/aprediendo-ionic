@@ -32,22 +32,16 @@ export class DetalleComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log('ID', this.id);
-
-    this.existe = await this.dataLocal.existePelicula( this.id );
-    console.log('existe', this.existe);
-    
+    this.existe = await this.dataLocal.existePelicula( this.id );    
 
     this.movieService.getPeliculaDetalle( this.id ).subscribe(
       (respuesta) => {
-        console.log(respuesta);
         this.pelicula = respuesta;
       }
     )
 
     this.movieService.getActoresPelicula( this.id ).subscribe(
       (respuesta) => {
-        console.log(respuesta);
         this.actores = respuesta.cast;
       }
     )

@@ -70,7 +70,6 @@ export class MoviesService {
       this.ejecutarQuery('/genre/movie/list?a=1').subscribe(
         resp => {
           this.generos = resp['genres'];
-          console.log(this.generos);
           resolve(this.generos);   
         }
       );
