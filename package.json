@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@awesome-cordova-plugins/barcode-scanner": "^5.43.0",
+    "phonegap-plugin-barcodescanner": "^8.1.0"
+  }
+}
